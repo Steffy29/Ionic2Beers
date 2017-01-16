@@ -1,4 +1,4 @@
-# Ionic Beers 2
+# Ionic 2 Beers
 
 **Ionic Beers** is a tutorial of the [Beer Tutorials](http://www.beer-tutorials.org) series.
 In this tutorial we will create a simple app that queries a beer catalog and displays a list of beers.
@@ -11,10 +11,10 @@ Install [NodeJS](https://nodejs.org/) and then using the node package manager (n
 npm install -g ionic
 ```
 
-After installing ionic, create a new project called `ionic-beers2`.
+After installing ionic, create a new project called `ionic2-beers`.
 
 ```
-ionic start ionic-beers2 blank --v2
+ionic start ionic2-beers blank --v2
 ```
 
 Navigate to the project directory and add the mobile development platform.
@@ -46,7 +46,7 @@ ionic serve --lab
 
 
     .
-    └── ionic-beers2
+    └── ionic2-beers
         ├── app
         │   ├── pages
         |   |     └── home

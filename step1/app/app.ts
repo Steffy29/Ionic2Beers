@@ -9,7 +9,7 @@ import { BeersPage } from './pages/beers/beers';
 @Component({
   templateUrl: 'build/app.html'
 })
-export class MyApp {
+export class Ionic2Beers {
 @ViewChild(Nav) nav: Nav;
 
     rootPage: any = HomePage;
@@ -43,4 +43,4 @@ export class MyApp {
 
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(Ionic2Beers);
