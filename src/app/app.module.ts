@@ -1,19 +1,19 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { Ionic2Beers } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 @NgModule({
   declarations: [
-    MyApp,
+    Ionic2Beers,
     HomePage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(Ionic2Beers)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    Ionic2Beers,
     HomePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

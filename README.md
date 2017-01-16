@@ -44,30 +44,23 @@ ionic serve --lab
 
 ## Project Structure
 
-
     .
     └── ionic2-beers
-        ├── app
-        │   ├── pages
-        |   |     └── home
-        |   |           ├── home.html
-        |   |           ├── home.scss
-        |   |           └── home.ts
-        |   ├── theme
-        |   |     ├── app.core.scss
-        |   |     ├── app.ios.scss
-        |   |     ├── app.md.scss
-        |   |     ├── app.variables.scss
-        |   |     └── app.wp.scss
-        |   └── app.ts
-        ├── www
-        │   ├── index.html
-        |   ├── manifest.json
-        |   └── service-worker.js
         ├── hooks
         │   ├── after_prepare
         │   │   └── ...
         │   └── README.md
+        ├── node_modules
+        │   ├── ...
+        │   └── ...
+        ├── platforms
+        │   ├── ios
+        │   │   └── ...
+        │   └── platform.json
+        ├── plugins
+        │   ├── ...
+        │   ├── fetch.json
+        │   └── ios.json
         ├── resources
         │   ├── android
         │   │   └── ...
@@ -75,25 +68,38 @@ ionic serve --lab
         │   │   └── ...
         │   ├── icon.png
         │   └── splash.png
+        ├── src
+        │   └── app
+        │       ├── pages
+        │       |     └── home
+        │       |           ├── home.html
+        │       |           ├── home.scss
+        │       |           └── home.ts
+        │       ├── assets
+        │       |     └── icon
+        │       |           └── favicon.ico
+        │       ├── theme
+        │       |     └── variables.scss
+        │       ├── declaration.d.ts
+        │       ├── index.html
+        │       ├── manifest.json
+        │       └── service-worker.js
         ├── typings
-        │   ├── globals
-        │   │   └── ...
-        │   └── index.d.ts
+        │   └── cordova-typings.d.ts
+        ├── www
+        │   ├── index.html
+        |   ├── manifest.json
+        |   └── service-worker.js
         ├── package.json
         ├── config.xml
-        ├── gulpfile.js
         ├── ionic.config.json
         ├── tsconfig.json
-        ├── tslint.json
-        ├── typings.json
-        └── platforms
-            ├── android
-            └── ios    
+        └── tslint.json
 
 
 Inside  the project folder there are 8 sub-folders: `app`, `hooks`, `node_modules`, `platforms`, `plugins`, `resources`, `typings` and `www`. The application source code resides in the `app` folder. Application code is written using Angular2 and Typescript.
 
-Inside the `www` folder is a file called `index.html` which has the default application code. Finally `app/app.ts` contains the code to start the application with the defined modules.
+Inside the `src` folder is a file called `index.html` which has the default application code. Finally `app/app.ts` contains the code to start the application with the defined modules.
 
 
 ## Designing the app
