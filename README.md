@@ -71,21 +71,26 @@ ionic serve --lab
         │   ├── icon.png
         │   └── splash.png
         ├── src
-        │   └── app
-        │       ├── pages
-        │       |     └── home
-        │       |           ├── home.html
-        │       |           ├── home.scss
-        │       |           └── home.ts
-        │       ├── assets
-        │       |     └── icon
-        │       |           └── favicon.ico
-        │       ├── theme
-        │       |     └── variables.scss
-        │       ├── declaration.d.ts
-        │       ├── index.html
-        │       ├── manifest.json
-        │       └── service-worker.js
+        │   ├── app
+        │   |     ├── app.component.ts
+        │   |     ├── app.html
+        │   |     ├── app.module.ts
+        │   |     ├── app.scss
+        │   |     └── main.ts
+        │   ├── assets
+        │   |     └── icon
+        │   |           └── favicon.ico
+        │   ├── pages
+        │   |     └── home
+        │   |           ├── home.html
+        │   |           ├── home.scss
+        │   |           └── home.ts
+        │   ├── theme
+        │   |     └── variables.scss
+        │   ├── declaration.d.ts
+        │   ├── index.html
+        │   ├── manifest.json
+        │   └── service-worker.js
         ├── typings
         │   └── cordova-typings.d.ts
         ├── www
@@ -101,124 +106,11 @@ ionic serve --lab
 
 Inside  the project folder there are 8 sub-folders: `hooks`, `node_modules`, `platforms`, `plugins`, `resources`, `src`, `typings` and `www`. The application source code resides in the `app` folder. Application code is written using Angular2 and Typescript.
 
-Inside the `src/app` folder is a file called `index.html` which has the default application code. Finally `app/app.ts` contains the code to start the application with the defined modules.
+Inside the `src` folder is a file called `index.html` which has the default application code. Finally `app/main.ts` contains the code to start the application with the defined modules.
 
 
 ## Designing the app
 
-Let's start by removing unused lines in application. Open `index.html` and look at the default code. Remove lines between the `body` tags. The `body` tag has an attribute called `ng-app` which references the application.
-
-This project will use a *[navigation view](http://ionicframework.com/docs/api/directive/ionNavView/)* to design our app.
-
-Inside the body tag add the navigation view.
-
-
-```
-<ion-nav-view></ion-nav-view>
-```
-
-Create a new directory in the `www` directory named `templates`. In this new directory, create a new file named `menu.html`. In this file, you would use a *ion-menu* directive. Open `menu.html` and add lines
-
-
-```
-<ion-side-menus>
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-dark">
-      <ion-nav-back-button></ion-nav-back-button>
-
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-
-    <ion-nav-view name="menuContent"></ion-nav-view>
-  </ion-side-menu-content>
-
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar-dark">
-      <h1 class="title">Menu</h1>
-    </ion-header-bar>
-
-		<ion-content>
-			<ul class="list">
-				<a href="#/event/home" class="item" menu-close>Home</a>
-				<a href="#/event/beers" class="item" menu-close>Beers list</a>
-			</ul>
-		</ion-content>
-  </ion-side-menu>
-</ion-side-menus>
-```
-
-
-Create a new file in `templates`directory named `home.html`. Open `home.html` and add lines
-
-```
-<ion-view view-title="Ionic Beers">
-	<ion-content class="padding">
-		Welcome!
-	</ion-content>
-</ion-view>
-```
-
-Create a new file in `templates` directory called `listBeers.html`
-
-```
-<ion-view view-title="Ionic Beer Gallery">
-	<ion-content class="padding">
-		<ul>
-	      <li>
-	        <span>Affligem Blond</span>
-	        <p>
-	          Affligem Blonde, the classic clear blonde abbey ale, with a gentle roundness and 6.8% alcohol.
-	          Low on bitterness, it is eminently drinkable.
-	        </p>
-	      </li>
-	      <li>
-	        <span>Affligem Tripel</span>
-	        <p>
-	          The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma,
-	          delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle.
-	        </p>
-	      </li>
-	    </ul>
-
-		<p>Total number of beers: 2</p>
-  </ion-content>
-</ion-view>
-```
-
-
-Open `app.js` to define routes
-
-```
-.config(function ($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-    .state('eventmenu', {
-      url: '/event',
-      abstract: 'true',
-      templateUrl: 'templates/menu.html'
-    })
-    .state('eventmenu.home', {
-        url: '/home',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/home.html'
-          }
-        }
-    })
-    .state('eventmenu.beers', {
-        url: '/beers',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/listBeers.html'
-          }
-        }
-    });
-
-    $urlRouterProvider.otherwise('/event/home');
-})
-```
 
 Save changes and run the app. It should look this way.
 
@@ -226,70 +118,6 @@ Save changes and run the app. It should look this way.
 
 
 ## Fetching data from Beer catalog
-
-
-Create a new file `js` directory called `controllers.js`
-
-```
-angular.module('ionicbeers')
-
-.controller('BeersCtrl', ['$scope', function($scope) {
-    $scope.beers = [
-      {
-        "alcohol": 8.5,
-        "name": "Affligem Tripel",
-        "description": "The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle."
-      },
-      {
-        "alcohol": 9.2,
-        "name": "Rochefort 8",
-        "description": "A dry but rich flavoured beer with complex fruity and spicy flavours."
-      },
-      {
-        "alcohol": 7,
-        "name": "Chimay Rouge",
-        "description": "This Trappist beer possesses a beautiful coppery colour that makes it particularly attractive. Topped with a creamy head, it gives off a slight fruity apricot smell from the fermentation. The aroma felt in the mouth is a balance confirming the fruit nuances revealed to the sense of smell. This traditional Belgian beer is best savoured at cellar temperature "
-      }
-    ];
-  }])
-  ```
-
-This controller defines a list of beers returned to the Angular scope.
-
-Open `index.html` and and declare the new controller
-
-
-```
-<script src="js/controllers.js"></script>
-```
-
-
-Open `app.js` file and add the BeersCtrl to the beer menu item
-
-```
-.state('eventmenu.beers', {
-    url: '/beers',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/listBeers.html',
-        controller: 'BeersCtrl'
-      }
-    }
-});
-```
-
-Open `listBeers.html` and replace lines between `ion-content` tag with those lines
-
-```
-<ul class="list">
-    <li ng-repeat="beer in beers">
-      <span>{{beer.name}}</span>
-      <p>{{beer.description}}</p>
-    </li>
-</ul>
-
-<p>Total number of beers: {{beers.length}}</p>
-```
 
 ## Translate labels
 
