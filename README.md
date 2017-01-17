@@ -5,10 +5,10 @@ In this tutorial we will create a simple app that queries a beer catalog and dis
 
 ## Getting Started
 
-Install [NodeJS](https://nodejs.org/) and then using the node package manager (npm), install ionic.
+Install [NodeJS](https://nodejs.org/) and then using the node package manager (npm), install ionic and cordova.
 
 ```
-npm install -g ionic
+npm install -g ionic cordova
 ```
 
 After installing ionic, create a new project called `ionic2-beers`.
