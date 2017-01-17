@@ -111,28 +111,10 @@ Inside the `src` folder is a file called `index.html` which has the default appl
 
 ## Designing the app
 
-Update title for the application (MyApp to Ionic2Beers). 
+### Menu
 
-Create new template to define the menu for the application using the generate command from Ionic CLI.
 
-```
-ionic g page menu
-```
-
-Open `pages/menu/menu.html` and modify 
-```
-<ion-menu [content]="content">
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-nav #content [root]="rootPage"></ion-nav>
-```
+### Beers list
 
 
 Save changes and run the app. It should look this way.
