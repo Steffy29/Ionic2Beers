@@ -99,9 +99,9 @@ ionic serve --lab
         └── tslint.json
 
 
-Inside  the project folder there are 8 sub-folders: `app`, `hooks`, `node_modules`, `platforms`, `plugins`, `resources`, `typings` and `www`. The application source code resides in the `app` folder. Application code is written using Angular2 and Typescript.
+Inside  the project folder there are 8 sub-folders: `hooks`, `node_modules`, `platforms`, `plugins`, `resources`, `src`, `typings` and `www`. The application source code resides in the `app` folder. Application code is written using Angular2 and Typescript.
 
-Inside the `src` folder is a file called `index.html` which has the default application code. Finally `app/app.ts` contains the code to start the application with the defined modules.
+Inside the `src/app` folder is a file called `index.html` which has the default application code. Finally `app/app.ts` contains the code to start the application with the defined modules.
 
 
 ## Designing the app
