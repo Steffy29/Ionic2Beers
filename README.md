@@ -34,7 +34,6 @@ Run the application on desktop browser
 ionic serve --lab
 ```
 
-
 > Note: To run the application in the Android emulator, you need to have the Android SDK
 > installed and configured on your computer.
 > The easiest way to do it is to install [Android Studio](http://developer.android.com/tools/studio/index.html)
@@ -108,7 +107,6 @@ Inside  the project folder there are 8 sub-folders: `hooks`, `node_modules`, `pl
 
 Inside the `src` folder is a file called `index.html` which has the default application code. Finally `app/main.ts` contains the code to start the application with the defined modules.
 
-
 ## Designing the app
 
 ### Beers list
@@ -165,7 +163,8 @@ Save changes.
 
 ### Menu
 
-First, we're going to add the menu to the app. For that, open `app/app.html` and replace code
+First, we're going to add the menu to the app. For that, open `app/app.html` and replace code with this code
+
 ```
 <ion-menu [content]="content">
     <ion-header>
@@ -218,6 +217,8 @@ Save changes and run the app. It should look this way.
 
 
 ## Fetching data from Beer catalog
+
+
 
 ## Translate labels
 
