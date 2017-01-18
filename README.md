@@ -111,11 +111,61 @@ Inside the `src` folder is a file called `index.html` which has the default appl
 
 ## Designing the app
 
-### Menu
-
-
 ### Beers list
 
+We need to create a new page to list the beers in the application. For that, we're going to use Ionic CLI to generate pages with command
+
+```
+ionic generate page beers
+```
+
+Open `pages/beers/beers.html` and add the code which define the beers list to display.
+
+```
+<ion-content padding>
+    <ul>
+        <li>
+            <span>Affligem Blond</span>
+            <p>
+                Affligem Blonde, the classic clear blonde abbey ale, with a gentle roundness and 6.8% alcohol. Low on bitterness, it is eminently drinkable.
+            </p>
+        </li>
+        <li>
+            <span>Affligem Tripel</span>
+            <p>
+                The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle.
+            </p>
+        </li>
+    </ul>
+
+    <p>Total number of beers: 2</p>
+</ion-content>
+```
+
+### Menu
+
+First, we're going to add the menu to the app. For that, open `app/app.html` and replace code
+```
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+        </ion-list>
+    </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+```
 
 Save changes and run the app. It should look this way.
 
