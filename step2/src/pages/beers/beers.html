@@ -1,0 +1,28 @@
+<!--
+  Generated template for the Beers page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Ionic 2 Beers Gallery</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ul>
+        <li *ngFor="let beer of beers">
+            <span>{{beer.name}}</span>
+            <p>
+                {{beer.description}}
+            </p>
+        </li>
+    </ul>
+
+    <p>Total number of beers: {{beers.length}}</p>
+</ion-content>
