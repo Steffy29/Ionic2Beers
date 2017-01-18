@@ -127,13 +127,18 @@ Open `pages/beers/beers.html` and add the code which define the beers list to di
         <li>
             <span>Affligem Blond</span>
             <p>
-                Affligem Blonde, the classic clear blonde abbey ale, with a gentle roundness and 6.8% alcohol. Low on bitterness, it is eminently drinkable.
+                Affligem Blonde, the classic clear blonde abbey ale, 
+                with a gentle roundness and 6.8% alcohol. Low on bitterness, 
+                it is eminently drinkable.
             </p>
         </li>
         <li>
             <span>Affligem Tripel</span>
             <p>
-                The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle.
+                The king of the abbey beers. It is amber-gold and pours with a 
+                deep head and original aroma, 
+                delivering a complex, full bodied flavour. Pure enjoyment! Secondary 
+                fermentation in the bottle.
             </p>
         </li>
     </ul>
@@ -141,6 +146,22 @@ Open `pages/beers/beers.html` and add the code which define the beers list to di
     <p>Total number of beers: 2</p>
 </ion-content>
 ```
+
+Now, we need to add this new page to the application. Open `app/app.component.ts` and add after the import of the HomePage
+
+```
+import { BeersPage } from '../pages/beers/beers';
+```
+
+Open `app/app.module.ts` and add after the import of the HomePage
+
+```
+import { BeersPage } from '../pages/beers/beers';
+```
+
+Add the BeersPage in `declarations` and `entryComponents`
+
+Save changes.
 
 ### Menu
 
@@ -165,6 +186,30 @@ First, we're going to add the menu to the app. For that, open `app/app.html` and
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+```
+
+Now, we need to add the reference to the menu in the application pages. Open `pages/beers/beers.html` and add this code at the beginning of the page
+
+```
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Ionic 2 Beers Gallery</ion-title>
+    </ion-navbar>
+</ion-header>
+```
+
+Do the same for `pages/home/home.html`.
+
+Open `app/app.component.ts` and add this code in the constructor 
+
+```
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'Beers list', component: BeersPage }
+    ];
 ```
 
 Save changes and run the app. It should look this way.
@@ -193,7 +238,7 @@ and add lines after `$urlRouterProvider`
 ```
 // Translate labels / title / menus
 $translateProvider.useSanitizeValueStrategy('escape');
-$translateProvider.useStaticFilesLoader({
+$translateProvider.useStaticFilesLoader({declarations
     prefix: 'languages/',
     suffix:'.json'
 });
