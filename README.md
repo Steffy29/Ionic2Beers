@@ -221,10 +221,10 @@ Save changes and run the app. It should look this way.
 
 ## Translate labels
 
-Now the application needs to be translated for users all around the world. For this, add `angular-translate` library with this command and update bower configuration
+Now the application needs to be translated for users all around the world. For this, add `ng2-translate` library with this command and update bower configuration
 
 ```
-bower install angular-translate-loader-static-files --save
+npm install ng2-translate --save
 ```
 
 Open `app.js` file  and update
