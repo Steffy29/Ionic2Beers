@@ -22,7 +22,7 @@ export class Ionic2Beers {
 
     // set default language
     translate.setDefaultLang('en');
-    translate.use('en');
+    translate.use(translate.getBrowserLang());
 
     // used for an example of ngFor and navigation
     this.pages = [
