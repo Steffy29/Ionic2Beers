@@ -399,14 +399,34 @@ Replace the code for the list size
 
 ## Loading beers from JSON files
 
-Add `$http` service in the controller definition and replace initialization of beers list  with loading JSON files
+Open `providers/data.ts` and replace the code in the constructor
 
 ```
-$http.get('beers/beers.json').success(function(data) {
-  $scope.beers = data;
-});
+    this.getJsonData().subscribe(data => {
+      this.beers = data;
+    });
 ```
 
+and create a new function
+
+```
+  getJsonData() {
+    return this.http.get('../assets/beers/beers.json').map(res => res.json());
+  }
+```
+
+Open `pages/beers/beers.ts` and create a new function
+
+```
+  getData() {
+    this.dataService.getJsonData().subscribe(result => {
+      this.beers = result;
+      this.listSize = this.beers.length;
+    });
+  }
+```
+
+and add the call of the function in `ionViewDidLoad` function.
 
 ## Getting the beers pics
 
