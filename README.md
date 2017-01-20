@@ -256,7 +256,6 @@ Then open `pages/beers/beers.html` and modify the display list construction like
 <p>Total number of beers: {{beers.length}}</p>
 ```
 
-
 ## Translate labels
 
 Now the application needs to be translated for users all around the world. For this, add `ng2-translate` library with this command and update bower configuration
@@ -265,41 +264,27 @@ Now the application needs to be translated for users all around the world. For t
 npm install ng2-translate --save
 ```
 
-Open `app.js` file  and update
+Open `app/app.component.ts` file  and add
 
 ```
-angular.module('ionicbeers', ['ionic','pascalprecht.translate'])
+import { TranslateService } from 'ng2-translate/ng2-translate';
 ```
 
-and add lines after `$urlRouterProvider`
+and add parameter to the constructor
 
 ```
-// Translate labels / title / menus
-$translateProvider.useSanitizeValueStrategy('escape');
-$translateProvider.useStaticFilesLoader({declarations
-    prefix: 'languages/',
-    suffix:'.json'
-});
-$translateProvider
-.registerAvailableLanguageKeys(['en','fr'], {
-    'en_US': 'en',
-    'en_UK': 'en',
-    'fr_FR': 'fr',
-    'fr_BE': 'fr'
-})
-.determinePreferredLanguage();
-
-$translateProvider.use();
+constructor(translate: TranslateService, public platform: Platform) {
 ```
 
-Open `index.html` and add lines to link script
+and set default language in the constructor
 
 ```
-<script src="lib/angular-translate/angular-translate.js"></script>
-<script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+// set default language
+translate.setDefaultLang('en');
+translate.use(translate.getBrowserLang());
 ```
 
-Create new files that contain translated labels in a new directory `languages`, for example `en.json`
+Create new files that contain translated labels in a new directory `i18n` in `assets` directory, for example `en.json`
 
 ```
 {
@@ -313,7 +298,7 @@ Create new files that contain translated labels in a new directory `languages`, 
 }
 ```
 
-Update `home.html` file to translate labels
+Update `pages/home/home.html` file to translate labels
 
 ```
 {{'content' | translate}}
