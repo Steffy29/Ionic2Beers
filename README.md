@@ -213,7 +213,7 @@ Open `app/app.component.ts` and add this code in the constructor
 
 Save changes and run the app. It should look this way.
 
-![Get beers list](../img/2015-12-04-getBeersList.png)
+![Get beers list](../img/2017-01-21-getBeersList.png)
 
 
 ## Fetching data from Beer catalog
@@ -309,38 +309,92 @@ Change all labels in `*.html` files to translate labels
 
 ## Order and search in list
 
-Sometimes the list need to be ordered. AngularJS do this with easy directives.
+Sometimes the list need to be ordered. Angular do this with easy directives.
 
-Add lines in `controllers.js` file  after beers list initialization
+We need to create a new provider with Ionic CLI
 
 ```
-$scope.orderProp = 'alcohol';
+ionic g provider Data
 ```
 
-Open `listBeers.html` and add lines to filter beers
+Open `app/app.module.ts` and add
+
+```
+import { Data } from '../providers/data';
+```
+
+In `@NgModule` add the definition of the provider
+
+```
+providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Data]
+```
+
+Open `providers/data.ts` file and add in the Data class
+
+```
+  beers: Array<{alcohol: number, name: string, description: string}>;
+
+  constructor(public http: Http) {
+    this.beers = [
+      {
+        alcohol: 8.5,
+        name: 'Affligem Tripel',
+        description: 'The king of the abbey beers. It is amber-gold and pours with a deep head and original aroma, delivering a complex, full bodied flavour. Pure enjoyment! Secondary fermentation in the bottle.'
+      },
+      {
+        alcohol: 9.2,
+        name: 'Rochefort 8',
+        description: 'A dry but rich flavoured beer with complex fruity and spicy flavours.'
+      },
+      {
+        alcohol: 7,
+        name: 'Chimay Rouge',
+        description: 'This Trappist beer possesses a beautiful coppery colour that makes it particularly attractive. Topped with a creamy head, it gives off a slight fruity apricot smell from the fermentation. The aroma felt in the mouth is a balance confirming the fruit nuances revealed to the sense of smell. This traditional Belgian beer is best savoured at cellar temperature.'
+      }
+    ];
+  }
+
+  filterBeers(searchTerm) {
+    return this.beers.filter((beer) => {
+      return beer.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
+```
+
+In `beers/beers.ts` file import the provider Data
+
+```
+import { Data } from '../../providers/data';
+```
+
+and replace the beers definition
+
+```
+  searchTerm: string = '';
+  beers: any;
+  listSize: number;
+```
+
+Remove the initialization of the beers list in the constructor and define the filtered function
+
+```
+  setFilteredBeers() {
+    this.beers = this.dataService.filterBeers(this.searchTerm);
+  }
+```
+
+Open `beers/beers.html` and add lines to filter beers
 
 ```
 <div>
-  {{'search' | translate}}: <input ng-model="query">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredBeers()"></ion-searchbar>
 </div>
 ```
 
-Add lines to sort beers
+Replace the code for the list size
 
 ```
-<div>
-  {{'sortBy' | translate}}:
-  <select ng-model="orderProp">
-    <option value="name">{{'alphabetical' | translate}}</option>
-    <option value="alcohol">{{'alcoholContent' | translate}}</option>
-  </select>
-</div>
-```
-
-After, add filter and sorter to the `ng-repeat` directive
-
-```
-<li ng-repeat="beer in beers | filter:query | orderBy:orderProp">
+<p>{{'beersNumbers' | translate}} : {{listSize}}</p>
 ```
 
 ## Loading beers from JSON files
