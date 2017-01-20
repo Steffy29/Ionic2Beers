@@ -430,19 +430,19 @@ and add the call of the function in `ionViewDidLoad` function.
 
 ## Getting the beers pics
 
-We can also extract the image URL from the received JSON and then we add the image to the `listBeers.html`:
-
+We can also extract the image URL from the received JSON and then we add the image to the `pages/beers/beers.html`:
 
 ```
-<a href="#/beers/{{beer.id}}"><img ng-src="{{beer.img}}" class="thumb-img"></a>
+<a href="#/assets/beers/{{beer.id}}">
+    <ion-img src="{{beer.img}}" class="thumb-img"></ion-img>
+</a>
 <div class="thumb">
-<a href="#/beers/{{beer.id}}">{{beer.name}}</a>
-<p>{{beer.description}}</p>
+    <a href="#/beers/{{beer.id}}">{{beer.name}}</a>
+    <p>{{beer.description}}</p>
 </div>
 ```
 
-![After adding pics](../img/2015-12-04-beers-pics.png)
-
+![After adding pics](../img/2017-01-21-beers-pics.png)
 
 ## Let's display the beer description
 
