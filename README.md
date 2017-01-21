@@ -224,6 +224,14 @@ and add this code after the constructor
     ];
 ```
 
+And add 
+```
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
+  }
+```
 Save changes and run the app. It should look this way.
 
 ![Get beers list](../img/2017-01-21-getBeersList.png)
