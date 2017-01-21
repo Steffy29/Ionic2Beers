@@ -216,7 +216,7 @@ and add this code before the constructor
   pages: Array<{title: string, component: any}>;
 ```
 
-and add this code after the constructor 
+and add this code in the constructor 
 
 ```
     this.pages = [
