@@ -236,7 +236,6 @@ Save changes and run the app. It should look this way.
 
 ![Get beers list](../img/2017-01-21-getBeersList.png)
 
-
 ## Fetching data from Beer catalog
 
 In the first step, we load beers catalog in a static page. Now, we load this catalog from the controller.
@@ -328,9 +327,9 @@ Update `pages/home/home.html` file to translate labels
 Change all labels in `*.html` files to translate labels
 
 
-## Order and search in list
+## Search in list
 
-Sometimes the list need to be ordered. Angular do this with easy directives.
+Sometimes we need to search in list. Angular do this with easy providers (or services).
 
 We need to create a new provider with Ionic CLI
 
