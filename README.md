@@ -202,7 +202,20 @@ Now, we need to add the reference to the menu in the application pages. Open `pa
 
 Do the same for `pages/home/home.html`.
 
-Open `app/app.component.ts` and add this code in the constructor 
+Open `app/app.component.ts` and add in the `@angular/core` import
+
+```
+import { Component, ViewChild } from '@angular/core';
+```
+
+and add this code before the constructor
+
+```
+  @ViewChild(Nav) nav: Nav;
+  pages: Array<{title: string, component: any}>;
+```
+
+and add this code after the constructor 
 
 ```
     this.pages = [
