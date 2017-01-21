@@ -206,6 +206,7 @@ Open `app/app.component.ts` and add in the `@angular/core` import
 
 ```
 import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
 ```
 
 and add this code before the constructor
