@@ -288,7 +288,7 @@ npm install ng2-translate --save
 Open `app/app.component.ts` file  and add
 
 ```
-import { TranslateService } from 'ng2-translate/ng2-translate';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 ```
 
 and add parameter to the constructor
